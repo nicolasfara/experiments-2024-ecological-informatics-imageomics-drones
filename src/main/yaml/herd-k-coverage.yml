@@ -1,0 +1,262 @@
+incarnation: protelis
+environment:
+  type: MovementTrackerPhysics2DEnvironment
+  parameters: ["drone"]
+variables:
+  ###### HERD
+  bodyLength: &bodyLen
+    formula: 2
+  bodyWidth: &bodyWidth
+    formula: bodyLength / 2
+  stressZoneRadius:
+    formula: 1.5 * bodyLength
+  neutralZoneRadius:
+    formula: 10 * bodyLength
+  attractionZoneRadius:
+    formula: 20 * bodyLength
+  rearZoneRadius:
+    formula: attractionZoneRadius
+  stressZoneRepulsionFactor: &stressRepulsionFactor
+    formula: 0.5 # [0; 1] Slow down by this factor if there are neighbors ahead of the individual in the stress zone.
+  attractionSpeedUp: &attractionSpeedUpFactor
+    formula: 1.5 # [1; inf] if there are nodes in attraction zone multiply the speed-up factor to current velocity
+  leadersSlowDown:
+    formula: 0.7 # [0; 1] if there are neighbors in rear zone slow down by this value
+  leadersSlowDownProbability:
+    formula: 0.8
+  trailersSpeedUp:
+    formula: 2.0
+  trailersSpeedUpProbability:
+    formula: 0.4
+  intrinsicForwardVelocity: 
+    formula: 1.0 * bodyLength
+  intrinsicLateralVelocity: 
+    formula: 0.5 * bodyLength
+  hearingLevel: &hearingThreshold
+    formula: 20.0
+  ### Variable grouping
+  zonesRadii: &zonesRadii
+    formula: listOf(stressZoneRadius, neutralZoneRadius, attractionZoneRadius, rearZoneRadius)
+    language: kotlin
+  velocities: &velocities
+    formula: listOf(intrinsicLateralVelocity, intrinsicForwardVelocity)
+    language: kotlin
+  movementProbabilities: &movementProbabilities
+    formula: listOf(0.25, 0.5, 0.25) # Probability to go [left, forward, right]
+    language: kotlin
+  leaderSeedChange: &leaderSeedChange
+    formula: listOf(leadersSlowDown, leadersSlowDownProbability)
+    language: kotlin
+  trailerSeedChange: &trailerSeedChange
+    formula: listOf(trailersSpeedUp, trailersSpeedUpProbability)
+    language: kotlin
+###### Drones
+  CameraSpeed: &CameraSpeed
+    formula: 10 # m/s
+  EnvironmentSize: &EnvironmentSize
+    formula: 2000 # meters
+  FoVAngle: &FoVAngle
+    formula: 80 # degrees
+  FoVDistance: &FoVDistance
+    formula: 100 # meters
+  FoVBlindSpotDistance: &FoVBlindSpotDistance
+    formula: 18 # meters
+  RotationSpeed: &RotationSpeed
+    formula: 60 # degrees / s
+  CommunicationRange: &CommunicationRange
+    formula: EnvironmentSize
+  Algorithm: &Algorithm
+    type: ListOf
+    parameters:
+      - "bc_re"
+      - "bc_re_c"
+      - "sm_av"
+      - "sm_av_c"
+      - "ff_linpro"
+      - "ff_linpro_c"
+#      - "ff_linpro_ac"
+  ClusteringDistance: &ClusteringDistance
+#    type: ListOf
+#    parameters: [60]
+    formula: 60
+  MaxCamerasPerTarget: &MaxCamerasPerTarget
+    formula: 3
+  droneHeight: &droneHeight
+    formula: 16.0
+  soundPowerLevel: &soundPowerLevel
+    formula: 83.0
+  distanceFromSourceMeasure: &distanceFromSourceMeasure
+    formula: 1.0
+  soundPressureLevel: &soundPressureLevel
+    language: kotlin
+    formula: |
+      import kotlin.math.*
+      soundPowerLevel - abs(10.0 * log10(1.0 / (4 * PI * distanceFromSourceMeasure.pow(2))))
+  zebraEllipseBodySegments: &zebraEllipseBodySegments
+    formula: 6.0
+
+##### Other
+  CamHerdRatio: &CamHerdRatio
+    type: ArbitraryVariable
+    parameters: [3.0, 1.0, 2.0, 3.0]
+  NumberOfHerds: &HerdNumber
+    type: ArbitraryVariable
+    parameters: [8, 2, 4, 8]
+  NumCameras: &NumCameras
+    formula: Math.ceil((CamHerdRatio)*NumberOfHerds)
+    language: kotlin
+  NumberOfAnimals: &NumberOfAnimals
+    formula:  140
+  EnvironmentRadius: &EnvironmentRadius
+    formula: EnvironmentSize / 2
+  Seed: &Seed
+    min: 1
+    max: 100
+    step: 1
+    default: 1
+
+seeds:
+  scenario: *Seed
+  simulation: *Seed
+
+_drone: &drone
+  - time-distribution: 2
+    type: Event
+    actions:
+      - type: InitHeading
+        parameters: [ ]
+      - type: CameraCaptureAnimals
+        parameters: [ vision ]
+      - type: HeadTowardTarget
+        parameters: [ heading, *RotationSpeed ]
+      - type: MoveToTarget
+        parameters: [ destination, *CameraSpeed ]
+  - time-distribution: 2
+    type: Event
+    conditions:
+      - type: MoleculeHasConcentration
+        parameters: [ doZigZag, true ]
+    actions:
+      - type: ConstantDistanceRandomWalk
+        parameters: [ 500, *CameraSpeed ]
+  - time-distribution: 2
+    type: Event
+    conditions:
+      - type: MoleculeHasConcentration
+        parameters: [ doSpin, true ]
+    actions:
+      - type: Spin
+        parameters: [ *RotationSpeed ]
+  - time-distribution: 1
+    program: *Algorithm
+  - program: send
+
+
+_herdParameters: &herdParameters
+  - *zonesRadii
+  - *velocities
+  - *movementProbabilities
+  - *stressRepulsionFactor
+  - *attractionSpeedUpFactor
+  - *leaderSeedChange
+  - *trailerSeedChange
+  - *HerdNumber
+  - *EnvironmentRadius
+  - *Seed
+
+_herd: &herd
+  - time-distribution: 1
+    type: Event
+    actions:
+      type: HerdBehavior
+      parameters: *herdParameters
+
+_animal_area: &animalArea
+  - type: RectangularArea
+    parameters: [ *bodyLen, *bodyWidth ] #inverted
+
+network-model:
+  type: ConnectToGroup
+  parameters: [*CommunicationRange, drone]
+
+deployments:
+  - type: GroupsDeployment
+    parameters: [*NumberOfAnimals, 0, 0, *EnvironmentRadius, *HerdNumber, 25]
+    contents:
+      - molecule: zebra
+        concentration: true
+    programs: *herd
+    properties:
+      - *animalArea
+      - type: NoisePerceived
+        parameters: [ *soundPressureLevel, *distanceFromSourceMeasure, *droneHeight, *hearingThreshold ]
+      - type: BodyCoverage
+        parameters: [ "vision", "zebra", *bodyLen, *bodyWidth, *zebraEllipseBodySegments ]
+      - type: FoVDistance
+        parameters: [ "vision", "zebra" ]
+  - type: Circle
+    parameters: [ *NumCameras, 0, 0, 200]
+    contents:
+      - molecule: drone
+        concentration: true
+      - molecule: FoVDistance
+        concentration: *FoVDistance
+      - molecule: EnvironmentSize
+        concentration: *EnvironmentSize
+      - molecule: CommRange
+        concentration: *CommunicationRange
+      - molecule: Target
+        concentration: "\"zebra\""
+      - molecule: MaxCamerasPerTarget
+        concentration: *MaxCamerasPerTarget
+      - molecule: MaxMovementSpeed
+        concentration: *CameraSpeed
+      - molecule: MaxRotationSpeed
+        concentration: *RotationSpeed
+      - molecule: noAttractiveForces
+        concentration: true
+      - molecule: ClusteringDistance
+        concentration: *ClusteringDistance
+    programs: *drone
+    properties:
+      - type: CameraWithBlindSpot
+        parameters: [ *FoVBlindSpotDistance, *FoVDistance, *FoVAngle, vision ]
+#  - type: SpecificPositions
+#    parameters: [ [ 0,0 ],[ 1000, 0 ], [ -1000, 0 ], [ 0,1000 ], [ 0, -1000 ] ]
+#    contents:
+#      - molecule: landmark
+#        concentration: true
+
+export:
+  - type: CustomCSVExporter
+    parameters:
+      fileNameRoot: "experiment_export"
+      interval: 10.0
+      exportPath: "data"
+    data:
+      - time
+      - type: CamerasKCoverage
+        parameters: ["vision", "zebra", *MaxCamerasPerTarget]
+      - type: DistanceTraveled
+      - molecule: "NoisePerceivedNormalized"
+        aggregators: [mean, variance]
+        value-filter: "onlyFinite"
+      - molecule: "NoisePerceived"
+        aggregators: [mean, variance, percentile90, max]
+        value-filter: "onlyFinite"
+      - molecule: "BodyCoverage"
+        aggregators: [mean, variance]
+        value-filter: "onlyFinite"
+      - molecule: "BodyCoverageOnlyCovered"
+        aggregators: [ mean, variance ]
+        value-filter: "onlyFinite"
+      - molecule: "FovDistance"
+        aggregators: [mean, variance]
+        value-filter: "onlyFinite"
+      - molecule: "FovDistanceOnlyCovered"
+        aggregators: [ mean, variance ]
+        value-filter: "onlyFinite"
+
+terminate:
+  - type: AfterTime
+    parameters: [ 1800 ]

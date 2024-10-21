@@ -1,0 +1,4 @@
+matplotlib ==3.9.1
+xarray ==2024.7.0
+seaborn ==0.13.2
+
