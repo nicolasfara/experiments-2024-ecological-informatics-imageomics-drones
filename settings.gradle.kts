@@ -11,4 +11,4 @@ develocity {
     }
 }
 
-rootProject.name = "experiments-imageonomics-drones"
+rootProject.name = "experiments-2024-ecological-informatics-imageomics-drones"
