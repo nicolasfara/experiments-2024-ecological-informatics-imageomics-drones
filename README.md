@@ -1,11 +1,7 @@
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10931792.svg)](https://zenodo.org/doi/10.5281/zenodo.10931792)
-
----
-
-# Decentralized Multi-Drone Coordination for Wildlife Video Acquisition
+# <TBD>
 
 In this repository, we provide the code and data to reproduce the experiments
-for the ACSOS 2024 paper "Decentralized Multi-Drone Coordination for Wildlife Video Acquisition".
+for the [Ecology Informatics](https://www.sciencedirect.com/journal/ecological-informatics) 2024 paper "TBD".
 
 ## Reproduce the entire experiment
 
