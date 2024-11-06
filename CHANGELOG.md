@@ -1,3 +1,15 @@
+## 1.0.0 (2024-11-06)
+
+### Documentation
+
+* adapt readme ([d0a074a](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/d0a074a016574f59e3a390b81b68fb7dc634bf98))
+
+### Build and continuous integration
+
+* change metadata for new experiments ([3d1460e](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/3d1460eaef959cdbe85e387eb352eee93d0df929))
+* remove deprecated docker-compose ([d8927cf](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/d8927cfc0233e4a6d8801689e45a6380c325d22b))
+* temporary disable charts creation (no data) ([249acbf](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/249acbf9b96ca25ffe13ffb89e07b357ff35775d))
+
 ## [1.10.5](https://github.com/nicolasfara/experiments-2024-ACSOS-imageonomics-drones/compare/1.10.4...1.10.5) (2024-07-30)
 
 ### Dependency updates
