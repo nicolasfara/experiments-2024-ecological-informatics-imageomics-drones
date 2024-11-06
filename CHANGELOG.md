@@ -1,3 +1,47 @@
+## [1.1.0](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/compare/1.0.0...1.1.0) (2024-11-06)
+
+### Features
+
+* **sim:** enable ff_linpro_ac and disable bc_re_c ([399819c](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/399819c005c72c69aa2d6fc8ae475a95198c7233))
+
+### Dependency updates
+
+* **deps:** update alchemist to v34.0.20 ([4d4d412](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/4d4d41263d5fd82dce0442ef927412ccf58b8f69))
+* **deps:** update alchemist to v34.1.11 ([99d2b3f](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/99d2b3f96f1c22f827120adbcee0622653c50691))
+* **deps:** update alpine docker tag to v3.20.3 ([f700079](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/f700079e9ffb2d303c97345b6856d62933e2a4bf))
+* **deps:** update dependency gradle to v8.10.2 ([6aad844](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/6aad84436463c6aef744b4ff8456ae88ef4272c5))
+* **deps:** update dependency it.unibo.alchemist:alchemist-incarnation-protelis to v34.1.12 ([233fca5](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/233fca5e78960fe685b6f2f3431dd1dedb8ab321))
+* **deps:** update dependency matplotlib to v3.9.2 ([56bb468](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/56bb46806df88bad0bdd856dcea08180965f6e47))
+* **deps:** update dependency org.jetbrains.kotlin.jvm to v2.0.21 ([9d7bb55](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/9d7bb55f149e62d84fa0831ddf0745c1c0abec66))
+* **deps:** update dependency org.jetbrains.kotlinx:kandy-lets-plot to v0.7.1 ([5189e7f](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/5189e7f19dba463d3299b3131eb15372adc8a005))
+* **deps:** update dependency org.locationtech.jts:jts-core to v1.20.0 ([9daa9b5](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/9daa9b552fa3c86f146b3dab9b0d6321c0a23c6d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.114 ([634857a](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/634857afe49fe878fcf2b14745f691db86ec2bcc))
+* **deps:** update dependency xarray to v2024.10.0 ([c0b78ef](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/c0b78efa6c3ca1357be897f73fba3bb346982356))
+* **deps:** update node.js to 20.18 ([6c6ad55](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/6c6ad55e0afaf04bcf3f21d9db2482d171f22d0c))
+* **deps:** update node.js to v22 ([7b8962f](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/7b8962fbec4b5244fe27987c313995a6513ec672))
+* **deps:** update plugin com.gradle.develocity to v3.18.1 ([2ea4012](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/2ea40129e85117b61344ba9527e9aa95937db862))
+* **deps:** update plugin kotlin-qa to v0.65.2 ([80726ac](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/80726ace4e43ca4b7bc9ea012c63dd653c928a65))
+* **deps:** update plugin kotlin-qa to v0.69.0 ([644a0b9](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/644a0b95e3680d7f643129947a2cafec5c80be2e))
+* **deps:** update plugin multijvmtesting to v1.2.8 ([b2493e9](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/b2493e9208e8b6db3087a17b5d14aa673fcbd29c))
+* **deps:** update python docker tag to v3.12.7 ([ec8bacf](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/ec8bacf0f793124f56a052954242893ea678d525))
+* **deps:** update python docker tag to v3.13.0 ([d9950d4](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/d9950d41b19e339763922d8eaaf3f28fd6596bed))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.2.2 ([d0d1261](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/d0d12611bbd8c14caafc3a48024a6dd79d61a606))
+* **deps:** update actions/setup-node action to v4.0.4 ([d582fd7](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/d582fd70ab78d5bb690a0c8926bb238556162d24))
+* **deps:** update actions/setup-node action to v4.1.0 ([7c83d18](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/7c83d1840142a8f348cbc4e9f36e4f294cf36f43))
+* **deps:** update actions/setup-python action to v5.3.0 ([3097d93](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/3097d938080ab7568104a9268912d4fbd0a07729))
+* **deps:** update actions/upload-artifact action to v4.3.6 ([872610f](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/872610f1272cc876b18bb201288388dbf89bb0bd))
+* **deps:** update actions/upload-artifact action to v4.4.3 ([1be9bcd](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/1be9bcd9f12bff409c76f35aa0e5387a5e5021e4))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.5.12 ([8d1afb7](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/8d1afb7513ee5fd7f96574a303637caa1df4cff5))
+* **deps:** update dependency ubuntu github actions runner to v24 ([1d8f082](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/1d8f0829a61c371a33ed052fcd991cbe0bedd62c))
+
+### General maintenance
+
+* **config:** migrate config renovate.json ([654afb8](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/654afb8900d8e626a59bd2eae64fa422d7162bba))
+* **release:** update gradle.properties .env versions to 1.0.0 [skip ci] ([1933274](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/19332747a36a5b597bbdbdd86c7ae74669c4c2ed))
+
 ## 1.0.0 (2024-11-06)
 
 ### Documentation
