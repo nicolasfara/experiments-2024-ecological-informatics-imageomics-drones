@@ -69,7 +69,7 @@ variables:
     type: ListOf
     parameters:
       - "bc_re"
-#      - "bc_re_c"
+      - "bc_re_c"
       - "sm_av"
       - "sm_av_c"
       - "ff_linpro"
@@ -255,6 +255,9 @@ export:
         value-filter: "onlyFinite"
       - molecule: "FovDistanceOnlyCovered"
         aggregators: [ mean, variance ]
+        value-filter: "onlyFinite"
+      - molecule: "ClusteringDistance"
+        aggregators: [mean, variance]
         value-filter: "onlyFinite"
 
 terminate:
