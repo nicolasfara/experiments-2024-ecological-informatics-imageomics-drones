@@ -500,7 +500,15 @@ if __name__ == '__main__':
     metrics_labels = ["Body Coverage", "Fov Distance", "Noise Perceived (normalized)"]
 
     viridis = plt.colormaps['viridis']
-    palette={"bc_re_c": viridis(0.1), "ff_linpro": viridis(0.3), "ff_linpro_c": viridis(0.7), "sm_av": viridis(0.9) }
+    palette = {
+        "bc_re": viridis(0.0),
+        "ff_linpro": viridis(0.2),
+        "ff_linpro_c": viridis(0.3),
+        "ff_linpro_ac": viridis(0.4),
+        "sm_av": viridis(0.8),
+        "sm_av_c": viridis(0.7),
+        "sm_av_ac": viridis(0.9),
+    }
 
     def plot_metric_by_algorithm(dataset, cam_herd_ratio, number_of_herds, labels):
         fig, ax = plt.subplots(1, len(dataset.columns), figsize=(18, 4), sharey=False, layout="constrained")
