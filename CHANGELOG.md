@@ -1,3 +1,24 @@
+## [1.2.1](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/compare/1.2.0...1.2.1) (2024-12-18)
+
+### Dependency updates
+
+* **deps:** update alchemist to v36.0.9 ([5318efe](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/5318efe67ae9f49309dd862acfa58ea2b5481ded))
+* **deps:** update dependency matplotlib to v3.10.0 ([e3d04f8](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/e3d04f85d8f58423ad190e9e56094123e7968ac3))
+
+### Bug Fixes
+
+* remove deprecated charset ([aafacc7](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/aafacc7e66cfe622f1b45a466ac82605b3f3bfad))
+
+### Build and continuous integration
+
+* **deps:** update actions/upload-artifact action to v4.5.0 ([0c1fb62](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/0c1fb6281152992865519c64e116705d44dd1094))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.5.26 ([9697d9f](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/9697d9f4047778ccb7c37139d71fe4a4ef5f0043))
+* **deps:** update danysk/build-check-deploy-gradle-action action to v3.5.27 ([6d7db59](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/6d7db591cd4f5087870318142ee35a4f2deeef2d))
+
+### General maintenance
+
+* **release:** update gradle.properties .env versions to 1.2.0 [skip ci] ([8f2f688](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/commit/8f2f68834af604eb4cf8aee61395c8e058abb619))
+
 ## [1.2.0](https://github.com/nicolasfara/experiments-2024-ecological-informatics-imageomics-drones/compare/1.1.0...1.2.0) (2024-12-16)
 
 ### Features
