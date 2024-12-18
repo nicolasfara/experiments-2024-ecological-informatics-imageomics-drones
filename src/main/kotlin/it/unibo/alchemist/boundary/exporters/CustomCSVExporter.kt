@@ -9,7 +9,6 @@
 
 package it.unibo.alchemist.boundary.exporters
 
-import com.google.common.base.Charsets
 import it.unibo.alchemist.model.Actionable
 import it.unibo.alchemist.model.Environment
 import it.unibo.alchemist.model.Position
@@ -63,7 +62,7 @@ class CustomCSVExporter<T, P : Position<P>> @JvmOverloads constructor(
             "No fileNameRoot provided for exporting data, no variables in the environment, and timestamp unset:" +
                 "the file name would be empty. Please provide a file name."
         }
-        outputPrintStream = PrintStream("$path$filePrefix.$fileExtension", Charsets.UTF_8.name())
+        outputPrintStream = PrintStream("$path$filePrefix.$fileExtension", Charsets.UTF_8)
         with(outputPrintStream) {
             println(SEPARATOR)
             print("# Alchemist log file - simulation started at: ")
